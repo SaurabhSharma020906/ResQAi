@@ -52,10 +52,13 @@ const server = http.createServer(app);
 // ===============================================
 const io = new Server(server, {
   cors: {
-    origin: CLIENT_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  },
+    origin: [
+      "http://localhost:5173",
+      "https://res-q-kjgt5mrli-saurabhsharma020906.vercel.app"
+    ],
+    methods: ["GET", "POST"],
+    credentials: true
+  }
 });
 
 // Make Socket.IO Available Everywhere
@@ -218,12 +221,19 @@ connectDB();
 // ===============================================
 // Middlewares
 // ===============================================
-app.use(
-  cors({
-    origin: CLIENT_URL,
-    credentials: true,
-  })
-);
+const cors = require("cors");
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://res-q-kjgt5mrli-saurabhsharma020906.vercel.app"
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
 
 app.use(express.json());
 
