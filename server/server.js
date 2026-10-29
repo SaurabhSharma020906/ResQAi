@@ -43,11 +43,9 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://res-q-kjgt5mrli-saurabhsharma020906.vercel.app",
+  "https://res-q-ai-fawn.vercel.app",
+  "https://res-q-kjgt5mrli-saurabhsharma020906.vercel.app"
 ];
-
-// Add any custom production frontend URL to allowedOrigins
-// if you use a different Vercel domain.
 
 const corsOptions = {
   origin: function (origin, callback) {
